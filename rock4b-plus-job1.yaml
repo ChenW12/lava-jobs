@@ -1,0 +1,37 @@
+device_type: rock4b-plus
+job_name: basic shell tests
+timeouts:
+  job:
+    minutes: 10
+  action:
+    minutes: 5
+  connection:
+    minutes: 2
+priority: medium
+visibility: public
+actions:
+- boot:
+    method: u-boot
+    commands:
+    - boot
+    prompts:
+    - 'root@rock-pi-4b-plus:'
+    timeout:
+      minutes: 2
+- test:
+    timeout:
+      minutes: 2
+    interactive:
+    - name: uname
+      prompts:
+      - ~#
+      echo: discard
+      script:
+      - name: uname
+        command: uname -a
+        successes:
+        - message: Linux rock-pi-4b 5.10.110-6-rockchip
+        failures:
+        - message: TIMEOUT
+          exception: InfrastructureError
+          error: uname failed
