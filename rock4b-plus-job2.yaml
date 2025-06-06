@@ -1,0 +1,24 @@
+device_type: rk3399-rock-pi-4b
+job_name: testing job
+timeouts:
+  job:
+    minutes: 5
+priority: medium
+visibility: public
+actions:
+- deploy:
+    to: usbg-ms
+    image:
+      url: https://github.com/radxa-build/rock-pi-4b-plus/releases/download/20230601-0112/rock-pi-4b-plus_debian_bullseye_cli_b21.img.xz
+      compression: zstd
+      format: ext4
+      partition: 2
+      overlays:
+        lava: true
+
+- boot:
+    method: minimal
+    prompts:
+    - 'root@rock-pi-4b-plus:~#'
+    timeout:
+      minutes: 3
