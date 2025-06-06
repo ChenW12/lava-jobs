@@ -2,7 +2,7 @@ device_type: rk3399-rock-pi-4b
 job_name: testing job
 timeouts:
   job:
-    minutes: 5
+    minutes: 20
 priority: medium
 visibility: public
 actions:
@@ -15,10 +15,13 @@ actions:
       partition: 2
       overlays:
         lava: true
+    timeout:
+      minutes: 8
+
 
 - boot:
     method: minimal
     prompts:
     - 'root@rock-pi-4b-plus:~#'
     timeout:
-      minutes: 3
+      minutes: 5
