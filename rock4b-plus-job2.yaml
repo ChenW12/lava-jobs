@@ -16,7 +16,7 @@ actions:
       overlays:
         lava: true
     timeout:
-      minutes: 8
+      minutes: 10
 
 
 - boot:
